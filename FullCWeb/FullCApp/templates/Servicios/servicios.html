@@ -1,0 +1,31 @@
+{% extends 'FullCApp/base.html' %}
+
+{% load static %}
+
+{% block content%}
+
+    <!-- Galeria -->
+
+    <hr>
+    <hr>
+
+	{% for s in servicios %}
+    <div class="container">
+		<hr class="featurette-divider">
+
+	    <div class="row featurette">
+	      <div class="col-md-7 order-md-2">
+		  <h1 class="featurette-heading"> {{ s.nombre }}</h1>
+		  <p class="lead"> {{ s.descripcion }}</p>
+		  	
+	      </div>
+	      <div class="col-md-5 order-md-1">
+	        {% if s.imagen %} <!-- Si el producto presenta imagen, esta se muestra -->
+                 <img src="{{ s.imagen.url }}" alt="imagen servicio">
+            {% endif %}
+	      </div>
+		</div>
+	</div>
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'FullCApp/base.html' %}
+
+{% load static %}
+
+{% block content%}
+
+        {% load crispy_forms_tags %}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="contenedor-form"
+            <div class="row"> 
+                <div class="col-12 col-md-6 offset-md-3"> 
+                    <div class="card">
+                        <div class="card-body" style="border: 0.5px solid black; padding: 20px;">
+
+                            <h2>Contactanos!</h2>
+                            <hr>
+
+                            <form action="" class="" method="POST"> 
+
+                            {% csrf_token %} 
+
+                            {{ form | crispy }}  
+
+                            <hr>
+
+                            <br>
+                            <div class="d-flex justify-content-end">
+                                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                                &nbsp;
+                                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+                            </div>
+
+                            </form>
+                        </div>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <table id="tablacontactos">
+                
+        </table>
+
+{% endblock %}

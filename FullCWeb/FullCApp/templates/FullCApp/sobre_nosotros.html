@@ -1,0 +1,54 @@
+{% extends 'FullCApp/base.html' %}
+
+{% load static %}
+
+{% block content%}
+
+	<!-- Sobre Nosotros -->
+	<div class="container">
+		<hr class="featurette-divider" style="margin-top: 100px;">
+
+	    <div class="row featurette">
+	      <div class="col-md-7">
+	        <h2 class="featurette-heading">Quienes somos?</span></h2>
+	        <p class="lead">Nosotros somos una empresa familiar que se formo hace poco tiempo, la cual se dedica a la prestacion de diferentes servicios para ayudar a resolver, desde problemas de poca complejidad hasta los mas complejos, a los diferentes
+		        clientes que nos contacten</p>
+	      </div>
+	      <div class="col-md-5">
+	        <img src="{% static 'img/Nosotros.jpg' %}">
+	      </div>
+	    </div>
+
+	    <!-- Contacto -->
+
+	    <hr class="featurette-divider">
+
+	    <div class="row featurette">
+	      <div class="col-md-7 order-md-2">
+	        <h2 class="featurette-heading">Nuestra experiencia</h2>
+	        <p class="lead">Tenemos alta experiencia en este tipo de trabajo.</p>
+	      </div>
+	      <div class="col-md-5 order-md-1">
+	        <img src="{% static 'img/Experiencia.jpg' %}">
+	      </div>
+	    </div>
+
+	    <hr class="featurette-divider">
+
+	    <div class="row featurette">
+	      <div class="col-md-7">
+	        <h2 class="featurette-heading">Proyectos que realizamos</span></h2>
+	        <p class="lead">Hemos realizado variados proyecto, de los cuales podemos destacar: 
+			<br>1. Casa pintada
+			<br>2. Construccion de porton electrico
+			<br>3. Arreglos electricos</p>
+	      </div>
+	      <div class="col-md-5">
+	        <img src="{% static 'img/Proyectos.jpg' %}">
+	      </div>
+	    </div>
+
+		<hr class="featurette-divider">
+    </div>
+
+{% endblock %}
