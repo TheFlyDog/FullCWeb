@@ -1,0 +1,90 @@
+{% extends 'FullCApp/base.html' %} 
+
+{% block js %} 
+    
+    <script> 
+        function EliminarPrestacion(id) { 
+            Swal.fire({
+                "title":"¿Estas seguro?",
+                "text":"Esta accion no se puede deshacer",
+                "icon":"question",
+                "showCancelButton":true,
+                "cancelButtonText":"No, Cancelar",
+                "confirmButtonText":"Si, Eliminar",
+                "reverseButtons":true,
+                "confirmButtonColor":"darkRed",
+            })
+
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href ="/eliminar-prestacion/"+id+"/"
+                }
+            })
+            
+        }
+
+    </script>
+
+{% endblock %}
+
+{% block content%} 
+
+{% load humanize %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <h2>Listado de prestaciones solicitadas</h2>
+            <hr>
+            
+            <table class="table table-striped table-hover table-responsive-md"> 
+                <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Servicio<th>
+                    <th>Opciones</th>
+                </tr>
+
+                {% for s in entity %} <!-- Ciclo for para recorrer los pedidos existentes -->
+
+                <tr> <!-- Contenido de la tabla -->
+                    <td>{{ s.rut | title }}</td>
+                    <td>{{ s.nombre | title }}</td>
+                    <td>{{ s.a_paterno | title }}</td>
+                    <td>{{ s.a_materno | title }}</td>
+                    <td>{{ s.correo | title }}</td>
+                    <td>{{ s.telefono | title }}</td>
+                    <td>${{ s.servicio | title }}</td>
+                    <td>
+                        <a href="{% url 'modificar_prestacion' p.id %}" class="btn btn-info btn-sm">Modificar</a>
+                        <a href="#" onclick="EliminarPrestacion({{ p.id }})"  class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+                
+            </table>
+
+            <div>
+                {% include 'Prestaciones/paginator.html' %} <!-- incluye la pagina del paginador-->
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}

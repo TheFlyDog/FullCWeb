@@ -52,3 +52,72 @@ def servicios(request):
     }
     return render(request, 'Servicios/servicios.html', data)
 
+# //----- AGREGAR PEDIDO VISTA -----// 
+
+def agregar_prestacion(request):
+    data = {
+        'form' : PrestacionForm
+    }
+
+
+    if request.method == 'POST':
+        formulario = PrestacionForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'La prestacion solicitada fue registrado exitosamente!')
+        else:
+            data["form"] = formulario
+
+    return render(request, 'Prestaciones/agregar.html', data)
+
+# //----- LISTAR PEDIDO VISTA -----// 
+
+
+def listar_prestacion(request):
+    prestaciones = Prestacion.objects.all()
+
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(prestaciones, 5) 
+        prestaciones = paginator.page(page) 
+    except:
+        raise Http404
+
+    data = {
+        'entity' : prestaciones,
+        'paginator': paginator
+    }
+
+    return render(request, 'Prestaciones/listar.html', data)
+
+# //----- MODIFICAR PEDIDO VISTA -----// 
+
+def modificar_prestacion(request, id):
+    
+    #busca el id obtenido en la url
+    prestacion = get_object_or_404(Prestacion, id=id)
+
+    data = {
+        'form' : PrestacionForm(instance=prestacion)
+    }
+
+    if request.method == 'POST':
+        formulario = PrestacionForm(data=request.POST, instance=prestacion)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Los datos de la prestacion que solicito, se modificaron correctamente!")
+            return redirect(to="listar_prestacion")
+        else:
+            data["form"] = formulario
+
+    return render(request, 'Prestaciones/modificar.html', data)
+
+# //----- ELIMINAR PEDIDO VISTA -----// 
+
+
+def eliminar_prestacion(request, id):
+    prestacion = get_object_or_404(PrestacionForm, id=id)
+    prestacion.delete()
+    messages.success(request, "La prestacion que había solicitado, se ha eliminado correctamente!")
+    return redirect(to='listar_prestacion')

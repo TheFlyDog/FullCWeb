@@ -37,25 +37,22 @@
 
     <hr class="separacion-galeria-1">
 
-    <div class="album py-5 bg-light">
-	    <div class="container">
-	    	<h1 class="titulo-galeria">Algunos de nuestros servicios</h1>
-			{% for s in servicios %}
-			<div class="row">
-		        <div class="col-md-4">
-		            <div class="card mb-4 shadow-sm">
-						{% if s.imagen %} <!-- Si el producto presenta imagen, esta se muestra -->
+	<div class="container">
+		<h1 class="titulo-servicios">Servicios que ofrecemos</h1>
+		<div class="servicios">
+			{% for s in servicios %} 
+				<div class="servicio">
+					<div class="contenedor_servicio"> 
+						{% if s.imagen %}
 							<img src="{{ s.imagen.url }}" alt="imagen servicio" class="img-album">
 						{% endif %}
 						<div class="card-body">
 							<h2 class="card-text">{{ s.nombre | title }}</h2>
-							</div>
 						</div>
-		            </div>
-		        </div>
-	        </div>
+					</div>
+				</div>
 			{% endfor %}
-	    </div>
+		</div>
 	</div>
 
 	<hr class="separacion-galeria-2">

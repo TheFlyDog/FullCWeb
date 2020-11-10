@@ -1,0 +1,48 @@
+{% extends 'FullCApp/base.html' %} 
+
+{% load static %}
+
+{% block js %}
+
+    <script src="{% static 'js/validaRut.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+    {% load crispy_forms_tags %}
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="contenedor-form"
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body" style="border: 0.5px solid black; padding: 20px;">
+                        <h2>Nueva Prestacion</h2>
+                        <hr>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            {{ form | crispy }}
+
+                            <hr>
+                            <div class="d-flex justify-content-end">
+                                <a href="{% url 'listar_prestacion' %}" class="btn btn-secondary">Volver</a>
+                                &nbsp;
+                                <input type="submit" value="Guardar" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}
